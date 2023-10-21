@@ -1,0 +1,60 @@
+{
+  "name": "@luxass/strip-json-comments",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@8.9.2",
+  "description": "strip comments from your json",
+  "author": {
+    "name": "Lucas Nørgård",
+    "email": "lucasnrgaard@gmail.com",
+    "url": "https://luxass.dev"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/luxass/strip-json-comments",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luxass/strip-json-comments"
+  },
+  "bugs": {
+    "url": "https://github.com/luxass/strip-json-comments/issues"
+  },
+  "keywords": [
+    "tsconfig",
+    "tsconfig.json",
+    "config",
+    "resolve"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "vitest",
+    "test": "vitest --run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@luxass/eslint-config": "^3.3.2",
+    "@types/node": "^18.16.18",
+    "eslint": "^8.52.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
+  }
+}
