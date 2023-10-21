@@ -19,10 +19,21 @@
     "url": "https://github.com/luxass/strip-json-comments/issues"
   },
   "keywords": [
-    "tsconfig",
-    "tsconfig.json",
+    "json",
+    "strip",
+    "comments",
+    "remove",
+    "delete",
+    "trim",
+    "multiline",
+    "parse",
     "config",
-    "resolve"
+    "configuration",
+    "settings",
+    "util",
+    "env",
+    "environment",
+    "jsonc"
   ],
   "exports": {
     ".": {
