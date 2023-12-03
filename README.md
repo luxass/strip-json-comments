@@ -1,5 +1,8 @@
 # strip-json-comments
 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+
 A fork of [sindresorhus/strip-json-comments](https://github.com/sindresorhus/strip-json-comments) but with support for CJS & ESM. And some small modifications.
 
 ## 📦 Installation
@@ -44,3 +47,10 @@ The main differences are:
 ## 📄 License
 
 Published under [MIT License](./LICENSE).
+
+<!-- Badges -->
+
+[npm-version-src]: https://img.shields.io/npm/v/@luxass/strip-json-comments?style=flat&colorA=18181B&colorB=4169E1
+[npm-version-href]: https://npmjs.com/package/@luxass/strip-json-comments
+[npm-downloads-src]: https://img.shields.io/npm/dm/@luxass/strip-json-comments?style=flat&colorA=18181B&colorB=4169E1
+[npm-downloads-href]: https://npmjs.com/package/@luxass/strip-json-comments
