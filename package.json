@@ -61,15 +61,15 @@
     "build": "tsup",
     "dev": "vitest",
     "test": "vitest --run",
-    "lint": "eslint .",
+    "lint": "eslint . --report-unused-disable-directives",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@luxass/eslint-config": "^4.0.0-beta.13",
+    "@luxass/eslint-config": "^4.2.4",
     "@types/node": "^20.9.2",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "tsup": "^8.0.1",
-    "typescript": "^5.3.2",
-    "vitest": "^1.0.0"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
   }
 }
