@@ -1,0 +1,14 @@
+{
+  "name": "@luxass/strip-json-comments",
+  "version": "1.2.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "exclude": [
+    "tsup.config.ts",
+    "eslint.config.js",
+    "pnpm-lock.yaml",
+    "tests",
+    ".github/**"
+  ]
+}
