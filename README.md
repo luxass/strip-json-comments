@@ -16,14 +16,14 @@ npm install @luxass/strip-json-comments
 There is a small difference to the original package. You can see it [here](#differences-to-sindresorhusstrip-json-comments).
 
 ```ts
-import { strip } from "@luxass/strip-json-comments"
+import { strip } from "@luxass/strip-json-comments";
 
 const json = `{
   // this is a comment
   "foo": /* this is also a comment */ "bar"
-}`
+}`;
 
-JSON.parse(strip(json)) // { foo: "bar" }
+JSON.parse(strip(json)); // { foo: "bar" }
 ```
 
 ## Differences to [sindresorhus/strip-json-comments](https://github.com/sindresorhus/strip-json-comments)
