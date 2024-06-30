@@ -9,6 +9,9 @@
     "eslint.config.js",
     "pnpm-lock.yaml",
     "tests",
-    ".github/**"
+    ".github/**",
+    ".nvmrc",
+    "tsconfig.json",
+    "README.md"
   ]
 }
