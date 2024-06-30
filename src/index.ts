@@ -37,7 +37,7 @@ function isEscaped(jsonString: string, quotePosition: number) {
   return Boolean(backslashCount % 2);
 }
 
-export const DEFAULT_OPTIONS = {
+export const DEFAULT_OPTIONS: Options = {
   trailingCommas: false,
   whitespace: true,
 } satisfies Options;
