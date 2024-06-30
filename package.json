@@ -13,7 +13,7 @@
   "homepage": "https://github.com/luxass/strip-json-comments",
   "repository": {
     "type": "git",
-    "url": "https://github.com/luxass/strip-json-comments"
+    "url": "git+https://github.com/luxass/strip-json-comments.git"
   },
   "bugs": {
     "url": "https://github.com/luxass/strip-json-comments/issues"
