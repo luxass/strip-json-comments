@@ -8,7 +8,7 @@
     "email": "lucasnrgaard@gmail.com",
     "url": "https://luxass.dev"
   },
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@9.15.3",
   "license": "MIT",
   "homepage": "https://github.com/luxass/strip-json-comments",
   "repository": {
@@ -67,9 +67,9 @@
   "devDependencies": {
     "@luxass/eslint-config": "^4.14.0",
     "@types/node": "^22.0.0",
-    "eslint": "^9.15.0",
+    "eslint": "^9.18.0",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.6"
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
   }
 }
