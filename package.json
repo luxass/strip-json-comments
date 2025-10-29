@@ -1,6 +1,6 @@
 {
   "name": "@luxass/strip-json-comments",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "strip comments from your json",
   "type": "module",
   "author": {
