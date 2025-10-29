@@ -79,3 +79,13 @@ it.fails("handles malformed block comments", () => {
   expect(strip("[] */")).toBe("[] */");
   expect(strip("[] /*")).toBe("[] /*"); // Fails
 });
+
+it("handles non-breaking space with preserving whitespace", () => {
+  const fixture = `{
+  // Comment with non-breaking-space: '\u00A0'
+  "a": 1
+  }`;
+
+  const stripped = strip(fixture);
+  expect(JSON.parse(stripped)).toEqual({ a: 1 });
+});

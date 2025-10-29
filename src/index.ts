@@ -22,7 +22,7 @@ function stripWithoutWhitespace() {
 }
 
 function stripWithWhitespace(str: string, start?: number, end?: number) {
-  return str.slice(start, end).replace(/\S/g, " ");
+  return str.slice(start, end).replace(/[^ \t\r\n]/g, " ");
 }
 
 function isEscaped(jsonString: string, quotePosition: number) {
