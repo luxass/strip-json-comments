@@ -75,7 +75,7 @@ it("strips trailing commas", () => {
   expect(strip("{\n  \"array\": [\n    true,\n    false /* comment */ ,\n /*comment*/ ],\n}", { trailingCommas: true, whitespace: false })).toBe("{\n  \"array\": [\n    true,\n    false  \n  ]\n}");
 });
 
-it.fails("handles malformed block comments", () => {
+it("handles malformed block comments", () => {
   expect(strip("[] */")).toBe("[] */");
   expect(strip("[] /*")).toBe("[] /*"); // Fails
 });

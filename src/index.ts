@@ -152,5 +152,9 @@ export function strip(jsonString: string, options: Options = DEFAULT_OPTIONS): s
     }
   }
 
-  return result + buffer + (isInsideComment ? _strip(jsonString.slice(offset)) : jsonString.slice(offset));
+  const remaining = (isInsideComment === singleComment)
+    ? _strip(jsonString, offset)
+    : jsonString.slice(offset);
+
+  return result + buffer + remaining;
 }
