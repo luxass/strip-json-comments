@@ -22,6 +22,9 @@ function stripWithoutWhitespace() {
 }
 
 function stripWithWhitespace(str: string, start?: number, end?: number) {
+  // Keep `.replace` without the `u` flag: with `u`, astral characters
+  // collapse to one space instead of two, changing long-standing output.
+  // eslint-disable-next-line unicorn/prefer-string-replace-all, eslint/require-unicode-regexp
   return str.slice(start, end).replace(/[^ \t\r\n]/g, " ");
 }
 
@@ -42,6 +45,7 @@ export const DEFAULT_OPTIONS: Options = {
   whitespace: true,
 } satisfies Options;
 
+/* eslint-disable max-lines-per-function -- `strip` is a single-pass state machine; splitting it would obscure the logic. */
 /**
  * Strip comments from JSON. Lets you use comments in your JSON files!
  * @param {string} jsonString - The JSON string to strip comments from
@@ -61,12 +65,14 @@ export const DEFAULT_OPTIONS: Options = {
  */
 export function strip(jsonString: string, options: Options = DEFAULT_OPTIONS): string {
   if (typeof jsonString !== "string") {
-    throw new TypeError(`Expected argument \`jsonString\` to be a \`string\`, got \`${typeof jsonString}\``);
+    throw new TypeError(
+      `Expected argument \`jsonString\` to be a \`string\`, got \`${typeof jsonString}\``,
+    );
   }
 
   const { trailingCommas = false, whitespace = true } = options;
 
-  const _strip = whitespace ? stripWithWhitespace : stripWithoutWhitespace;
+  const stripFn = whitespace ? stripWithWhitespace : stripWithoutWhitespace;
 
   let isInsideString = false;
   let isInsideComment: symbol | boolean = false;
@@ -83,7 +89,7 @@ export function strip(jsonString: string, options: Options = DEFAULT_OPTIONS): s
       continue;
     }
 
-    if (!isInsideComment && currentCharacter === "\"") {
+    if (isInsideComment === false && currentCharacter === '"') {
       // Enter or exit string
       const escaped = isEscaped(jsonString, i);
       if (!escaped) {
@@ -95,7 +101,7 @@ export function strip(jsonString: string, options: Options = DEFAULT_OPTIONS): s
       continue;
     }
 
-    if (!isInsideComment && currentCharacter + nextCharacter === "//") {
+    if (isInsideComment === false && currentCharacter + nextCharacter === "//") {
       // Enter single-line comment
       buffer += jsonString.slice(offset, i);
       offset = i;
@@ -105,15 +111,15 @@ export function strip(jsonString: string, options: Options = DEFAULT_OPTIONS): s
       // Exit single-line comment via \r\n
       i++;
       isInsideComment = false;
-      buffer += _strip(jsonString, offset, i);
+      buffer += stripFn(jsonString, offset, i);
       offset = i;
       continue;
     } else if (isInsideComment === singleComment && currentCharacter === "\n") {
       // Exit single-line comment via \n
       isInsideComment = false;
-      buffer += _strip(jsonString, offset, i);
+      buffer += stripFn(jsonString, offset, i);
       offset = i;
-    } else if (!isInsideComment && currentCharacter + nextCharacter === "/*") {
+    } else if (isInsideComment === false && currentCharacter + nextCharacter === "/*") {
       // Enter multiline comment
       buffer += jsonString.slice(offset, i);
       offset = i;
@@ -124,19 +130,24 @@ export function strip(jsonString: string, options: Options = DEFAULT_OPTIONS): s
       // Exit multiline comment
       i++;
       isInsideComment = false;
-      buffer += _strip(jsonString, offset, i + 1);
+      buffer += stripFn(jsonString, offset, i + 1);
       offset = i + 1;
       continue;
-    } else if (trailingCommas && !isInsideComment) {
+    } else if (trailingCommas && isInsideComment === false) {
       if (commaIndex !== -1) {
         if (currentCharacter === "}" || currentCharacter === "]") {
           // Strip trailing comma
           buffer += jsonString.slice(offset, i);
-          result += _strip(buffer, 0, 1) + buffer.slice(1);
+          result += stripFn(buffer, 0, 1) + buffer.slice(1);
           buffer = "";
           offset = i;
           commaIndex = -1;
-        } else if (currentCharacter !== " " && currentCharacter !== "\t" && currentCharacter !== "\r" && currentCharacter !== "\n") {
+        } else if (
+          currentCharacter !== " " &&
+          currentCharacter !== "\t" &&
+          currentCharacter !== "\r" &&
+          currentCharacter !== "\n"
+        ) {
           // Hit non-whitespace following a comma; comma is not trailing
           buffer += jsonString.slice(offset, i);
           offset = i;
@@ -152,9 +163,9 @@ export function strip(jsonString: string, options: Options = DEFAULT_OPTIONS): s
     }
   }
 
-  const remaining = (isInsideComment === singleComment)
-    ? _strip(jsonString, offset)
-    : jsonString.slice(offset);
+  const remaining =
+    isInsideComment === singleComment ? stripFn(jsonString, offset) : jsonString.slice(offset);
 
   return result + buffer + remaining;
 }
+/* eslint-enable max-lines-per-function */
