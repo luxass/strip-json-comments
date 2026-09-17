@@ -2,39 +2,44 @@
   "name": "@luxass/strip-json-comments",
   "version": "2.0.1",
   "description": "strip comments from your json",
-  "type": "module",
+  "keywords": [
+    "comments",
+    "config",
+    "configuration",
+    "delete",
+    "env",
+    "environment",
+    "json",
+    "jsonc",
+    "multiline",
+    "parse",
+    "remove",
+    "settings",
+    "strip",
+    "trim",
+    "util"
+  ],
+  "homepage": "https://github.com/luxass/strip-json-comments",
+  "bugs": {
+    "url": "https://github.com/luxass/strip-json-comments/issues"
+  },
+  "license": "MIT",
   "author": {
     "name": "Lucas Nørgård",
     "email": "lucasnrgaard@gmail.com",
     "url": "https://luxass.dev"
   },
-  "packageManager": "pnpm@10.29.3",
-  "license": "MIT",
-  "homepage": "https://github.com/luxass/strip-json-comments",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luxass/strip-json-comments.git"
   },
-  "bugs": {
-    "url": "https://github.com/luxass/strip-json-comments/issues"
-  },
-  "keywords": [
-    "json",
-    "strip",
-    "comments",
-    "remove",
-    "delete",
-    "trim",
-    "multiline",
-    "parse",
-    "config",
-    "configuration",
-    "settings",
-    "util",
-    "env",
-    "environment",
-    "jsonc"
+  "files": [
+    "dist"
   ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -42,34 +47,29 @@
     },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.cts",
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=20"
-  },
   "scripts": {
     "build": "tsdown",
-    "dev": "vitest",
+    "dev": "tsdown --watch",
     "test": "vitest --run",
-    "lint": "eslint .",
+    "test:watch": "vitest",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@luxass/eslint-config": "7.2.0",
-    "@types/node": "24.10.12",
-    "eslint": "10.0.0",
-    "publint": "0.3.17",
-    "tsdown": "0.20.3",
-    "typescript": "5.9.3",
-    "vitest": "4.0.18"
+    "@types/node": "catalog:types",
+    "oxfmt": "catalog:dev",
+    "oxlint": "catalog:dev",
+    "oxlint-tsgolint": "catalog:dev",
+    "publint": "catalog:dev",
+    "tsdown": "catalog:dev",
+    "typescript": "catalog:dev",
+    "vitest": "catalog:testing"
   },
-  "pnpm": {
-    "overrides": {
-      "rolldown": "1.0.0-rc.4"
-    }
-  }
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@12.4.1"
 }

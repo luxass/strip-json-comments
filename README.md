@@ -29,6 +29,7 @@ JSON.parse(strip(json)); // { foo: "bar" }
 ## Differences to [sindresorhus/strip-json-comments](https://github.com/sindresorhus/strip-json-comments)
 
 The main differences are:
+
 - This package is published as ESM & CJS
 - And the `default export` is moved to a `named export` called `strip`
 

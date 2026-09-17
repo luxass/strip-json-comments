@@ -5,8 +5,9 @@
     ".": "./src/index.ts"
   },
   "exclude": [
-    "tsup.config.ts",
-    "eslint.config.js",
+    "tsdown.config.ts",
+    "oxlint.config.ts",
+    "oxfmt.config.ts",
     "pnpm-lock.yaml",
     "tests",
     ".github/**",
